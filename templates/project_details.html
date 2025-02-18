@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="d-flex">
+        <div class="p-3 border bg-light" style="width: 40vh;">
+            <h1>{{ project.name }}</h1><br>
+            <p class="card-text">{{ project.description|linebreaksbr }}</p>
+        </div>
+        <div class="p-3 border bg-light" style="object-fit: cover;"><img src="../static/img/{{ project.img }}" width="1500" height="1000"></div>
+    </div>
+</div>
+{% endblock content %}
