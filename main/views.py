@@ -16,6 +16,11 @@ class SkillListView(ListView):
     model = Skill
     template_name = "skills.html"
     context_object_name = "skills"
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["categories"] = Skill.objects.values("category").distinct()
+        return context
+    
 
 def resume_view(request):
     return render(request, "home.html")

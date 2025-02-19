@@ -1,19 +1,27 @@
 {% extends "base.html" %}
 
 {% block content %}
-{% for project in projects %}
-<div class="card" style="width: 18rem;">
-    <img src="../static/img/{{ project.img }}" class="card-img-top">
-    <div class="card-body">
-        <h5 class="card-title">{{ project.name }}</h5>
-        <p class="card-text">{{ project.description|linebreaksbr }}</p>
-        <a href={% url "project_details" project.pk %} class="btn btn-primary">Project Details</a>
-        {% comment %}{% if project.name == "Spin Class Instructor App" %}
-            <a href="https://instructor-playlists-app.fly.dev/" class="btn btn-primary">Try App</a>
-        {% else %}
-            <a href={% url "project_details" project.pk %} class="btn btn-primary">Project Details</a>
-        {% endif %}{% endcomment %}
+<div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="d-flex">
+        {% for project in projects %}
+            <div class="p-3 border bg-light">
+                <div class="card" style="width: 18rem;">
+                    <img src="../static/img/{{ project.img }}" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ project.name }}</h5>
+                        <p class="card-text">{{ project.description|linebreaksbr }}</p>
+                        {% if project.website %}
+                            <a href={{ project.website }} class="btn btn-primary">Try App</a>
+                        {% else %}
+                            <a href={% url "project_details" project.pk %} class="btn btn-primary">Project Details</a>
+                        {% endif %}
+                        {% if project.github %}
+                            <a href={{ project.github }} class="btn btn-success">GitHub</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
     </div>
 </div>
-{% endfor %}
 {% endblock content %}

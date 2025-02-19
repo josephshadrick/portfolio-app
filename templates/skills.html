@@ -1,5 +1,31 @@
 {% extends "base.html" %}
 
 {% block content %}
-
+<div class="container mt-5">
+    {% for category in categories %}
+        <div class="p-3 border bg-light">
+            <table class="table table-bordered table-dark text-center">
+                <thead>
+                    <tr>
+                        <th colspan="2">{{ category.category }}</th>
+                    </tr>
+                    <tr>
+                        <th>Skill</th>
+                        <th>Years</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for skill in skills %}
+                        {% if skill.category == category.category %}
+                            <tr>
+                                <td>{{ skill.name }}</td>
+                                <td>{{ skill.years }}</td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endfor %}
+</div>
 {% endblock content %}
